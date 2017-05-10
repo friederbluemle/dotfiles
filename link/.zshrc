@@ -103,8 +103,6 @@ bindkey '\e[B' down-line-or-beginning-search
 
 fpath=(~/.oh-my-zsh/custom/plugins/hub-completion $fpath)
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -132,3 +130,11 @@ function dotfiles() {
 }
 
 src
+
+if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+  if [[ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] then
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
+fi
