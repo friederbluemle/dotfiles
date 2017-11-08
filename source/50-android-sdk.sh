@@ -1,11 +1,14 @@
-ANDROID_HOME=/opt/android-sdk-linux
-if [[ -d $ANDROID_HOME ]]; then
-  export ANDROID_HOME
-  export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-else
-  ANDROID_HOME=/Users/$USER/Library/Android/sdk
-  if [[ -d $ANDROID_HOME ]]; then
-    export ANDROID_HOME
-    export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
+PATHS=(
+  "/opt/android-sdk"
+  "/opt/android-sdk-linux"
+  "/Users/$USER/Library/Android/sdk"
+)
+
+for p in "${PATHS[@]}"
+do
+  if [[ -d $p ]]; then
+    export ANDROID_HOME=$p
+    PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
+    break
   fi
-fi
+done
