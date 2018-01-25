@@ -1,3 +1,9 @@
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+call plug#end()
+
 syntax on
 filetype indent plugin on
 if has("autocmd")
