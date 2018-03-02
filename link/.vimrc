@@ -4,20 +4,18 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 call plug#end()
 
-syntax on
-filetype indent plugin on
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif
 endif
 
-set ruler
-
-" Indentation
 set shiftwidth=4
 set softtabstop=4
-set autoindent
 set expandtab
+set hlsearch
+
 autocmd FileType make setlocal noexpandtab
+autocmd FileType gitconfig setlocal noexpandtab shiftwidth=8 softtabstop=8
+autocmd FileType bash,sh,zsh setlocal shiftwidth=2 softtabstop=2
 
 " F3: Toggle list (display unprintable characters).
 hi SpecialKey ctermfg=darkgray guifg=lightgray
@@ -49,12 +47,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinLeave * call clearmatches()
-
-" Search highlight
-set hlsearch
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
 
 " Move lines
 noremap <M-Up> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
