@@ -1,0 +1,9 @@
+--ignore-dir=.idea
+--ignore-dir=.gradle
+--ignore-dir=.settings
+--ignore-dir=bin
+--ignore-dir=build
+--ignore-dir=gen
+--ignore-dir=node_modules
+--ignore-dir=vendor
+--sort-files
