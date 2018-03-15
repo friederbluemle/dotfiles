@@ -2,6 +2,8 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+Plug 'bling/vim-airline'
+Plug 'valloric/youcompleteme'
 call plug#end()
 
 if has("autocmd")
