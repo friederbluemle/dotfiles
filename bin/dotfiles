@@ -126,8 +126,12 @@ if [[ "$1" != "restart" ]]; then
   e_header "Updating dotfiles"
   cd $DOTFILES
   prev_head="$(git rev-parse HEAD)"
-  git pull
-  if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
+  git fetch
+  git merge --ff-only
+  if [[ $? -ne 0 ]]; then
+    e_header "Unable to merge changes, please resolve manually in ${DOTFILES}."
+    exit 1
+  elif [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
     e_header "Changes detected, restarting script"
     exec "$0" "restart"
   fi
