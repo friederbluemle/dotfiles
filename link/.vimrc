@@ -4,6 +4,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'bling/vim-airline'
 Plug 'valloric/youcompleteme'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 if has("autocmd")
@@ -19,7 +22,10 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab shiftwidth=8 softtabstop=8
 autocmd FileType bash,sh,zsh setlocal shiftwidth=2 softtabstop=2
 
-" F3: Toggle list (display unprintable characters).
+" F2: Toggle NERDTree
+map <F2> :NERDTreeToggle<CR>
+
+" F3: Toggle list (display unprintable characters)
 hi SpecialKey ctermfg=darkgray guifg=lightgray
 hi NonText ctermfg=darkgray guifg=lightgray
 set listchars=eol:¬,tab:»­,space:·,extends:>,precedes:<,nbsp:␣
@@ -40,6 +46,9 @@ augroup END
 
 " F7: Format file
 map <F7> mzgg=G'z
+
+" F8: Toggle Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " Show trailing whitespace and spaces before a tab
 " except on the current line in insert mode
