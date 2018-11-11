@@ -8,3 +8,8 @@ else
     source /usr/share/nvm/init-nvm.sh
   fi
 fi
+NODE_MODULES_DIR=$HOME/.node_modules
+if [[ -d $NODE_MODULES_DIR ]]; then
+  export npm_config_prefix=$NODE_MODULES_DIR
+  PATH="$NODE_MODULES_DIR/bin:$PATH"
+fi
