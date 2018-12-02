@@ -6,4 +6,7 @@ if [ -n "$ZSH_VERSION" ]; then
       source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi
   fi
+  if [[ -f "/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+  fi
 fi

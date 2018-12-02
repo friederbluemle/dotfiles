@@ -1,4 +1,4 @@
 FASTPATH="$HOME/.fastlane"
-if [[ -d $FASTPATH ]]; then
+if [[ -d "$FASTPATH/bin" ]]; then
   PATH=$PATH:$FASTPATH/bin
 fi
