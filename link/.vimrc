@@ -69,3 +69,8 @@ noremap <M-Down> ddp
 " Duplicate lines
 noremap <C-M-Up> yyP
 noremap <C-M-Down> yyPj
+
+" Comment lines with Ctrl+/
+nmap <C-_> gcc
+imap <C-_> <esc>gcci
+" xmap <C-_> <Plug>Commentary
