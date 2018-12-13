@@ -25,8 +25,17 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab shiftwidth=8 softtabstop=8
 autocmd FileType bash,sh,zsh setlocal shiftwidth=2 softtabstop=2
 
-" F2: Toggle NERDTree
-map <F2> :NERDTreeToggle<CR>
+" Show trailing whitespace and spaces before a tab
+" except on the current line in insert mode
+hi ExtraWhitespace ctermbg=red guibg=lightred
+match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd BufWinLeave * call clearmatches()
+
+" Ctrl+\: Toggle NERDTree
+map <C-\> :NERDTreeToggle<CR>
 
 " F3: Toggle list (display unprintable characters)
 hi SpecialKey ctermfg=darkgray guifg=lightgray
@@ -52,15 +61,6 @@ map <F7> mzgg=G'z
 
 " F8: Toggle Tagbar
 nmap <F8> :TagbarToggle<CR>
-
-" Show trailing whitespace and spaces before a tab
-" except on the current line in insert mode
-hi ExtraWhitespace ctermbg=red guibg=lightred
-match ExtraWhitespace /\s\+$\| \+\ze\t/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
-autocmd BufWinLeave * call clearmatches()
 
 " Move lines
 noremap <M-Up> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
