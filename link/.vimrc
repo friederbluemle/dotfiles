@@ -36,6 +36,7 @@ autocmd BufWinLeave * call clearmatches()
 
 " Ctrl+\: Toggle NERDTree
 map <C-\> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
 " F3: Toggle list (display unprintable characters)
 hi SpecialKey ctermfg=darkgray guifg=lightgray
