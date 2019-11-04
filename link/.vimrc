@@ -10,7 +10,13 @@ Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'wsdjeg/vim-fetch'
 call plug#end()
+
+augroup filetypedetect
+    au BufRead,BufNewFile ISSUE_EDITMSG setfiletype gitcommit
+    au BufRead,BufNewFile PULLREQ_EDITMSG setfiletype gitcommit
+augroup END
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif
