@@ -3,5 +3,5 @@ alias initvimplug='mkdir -p $HOME/.vim/autoload && git clone git://github.com/ju
 alias initgitdiff='git clone git://github.com/so-fancy/diff-so-fancy.git $HOME/github/so-fancy/diff-so-fancy && ln -s $HOME/github/so-fancy/diff-so-fancy/diff-so-fancy $HOME/bin/diff-so-fancy'
 alias initdotfiles='git clone git://github.com/friederbluemle/dotfiles.git $HOME/github/friederbluemle/dotfiles && ln -s $HOME/github/friederbluemle/dotfiles $HOME/.dotfiles'
 alias initomz='git clone git://github.com/ohmyzsh/ohmyzsh.git $HOME/github/ohmyzsh/ohmyzsh && ln -s $HOME/github/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh'
-alias initomzfork='cd $HOME/github/ohmyzsh/ohmyzsh && git remote add fb https://github.com/friederbluemle/ohmyzsh.git && git fetch fb && git checkout fb-custom'
+alias initomzfork='pushd $HOME/github/ohmyzsh/ohmyzsh && git remote add fb https://github.com/friederbluemle/ohmyzsh.git && git fetch fb && git checkout fb-custom && popd'
 alias initzshrc='ln -s $HOME/github/ohmyzsh/ohmyzsh/templates/zshrc.zsh-template $HOME/.zshrc'
