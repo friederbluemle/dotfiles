@@ -1,0 +1,26 @@
+{
+  "\UF729"   = moveToBeginningOfLine:;                       // home
+  "\UF72B"   = moveToEndOfLine:;                             // end
+  "\UF72C"   = pageUp:;                                      // pgup
+  "\UF72D"   = pageDown:;                                    // pgdown
+  "$\UF72C"  = pageUpAndModifySelection:;                    // shift-pgup
+  "$\UF72D"  = pageDownAndModifySelection:;                  // shift-pgdown
+  "$\UF729"  = moveToBeginningOfLineAndModifySelection:;     // shift-home
+  "$\UF72B"  = moveToEndOfLineAndModifySelection:;           // shift-end
+  "^\UF729"  = moveToBeginningOfDocument:;                   // ctrl-home
+  "^\UF72B"  = moveToEndOfDocument:;                         // ctrl-end
+  "^$\UF729" = moveToBeginningOfDocumentAndModifySelection:; // ctrl-shift-home
+  "^$\UF72B" = moveToEndOfDocumentAndModifySelection:;       // ctrl-shift-end
+  "^\UF702"  = moveWordLeft:;                                // ctrl-left
+  "^\UF703"  = moveWordRight:;                               // ctrl-right
+  "^$\UF702" = moveWordLeftAndModifySelection:;              // ctrl-shift-left
+  "^$\UF703" = moveWordRightAndModifySelection:;             // ctrl-shift-right
+  "^\U007F"  = deleteWordBackward:;                          // ctrl-backspace
+  "^\UF728"  = deleteWordForward:;                           // control-delete
+  "$\UF728"  = cut:;                                         // shift-delete
+  "^\UF727"  = copy:;                                        // ctrl-insert (fn/help)
+  "^\UF746"  = copy:;                                        // ctrl-insert
+  "$\UF727"  = paste:;                                       // shift-insert (fn/help)
+  "$\UF746"  = paste:;                                       // shift-insert
+  "^$\UF746" = yank:;                                        // ctrl-shift-ins
+}
