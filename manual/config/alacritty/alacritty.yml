@@ -533,7 +533,7 @@ selection:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
-#key_bindings:
+key_bindings:
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
@@ -554,6 +554,13 @@ selection:
   #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
   #- { key: K,      mods: Command,         action: ClearHistory     }
   #- { key: K,      mods: Command,         chars: "\x0c"            }
+  - { key: J,      mods: Command,                 action: ScrollPageDown, mode: ~Alt       }
+  - { key: K,      mods: Command,                 action: ScrollPageUp,   mode: ~Alt       }
+  - { key: J,      mods: Control|Shift,           action: ScrollLineDown, mode: ~Alt       }
+  - { key: K,      mods: Control|Shift,           action: ScrollLineUp,   mode: ~Alt       }
+  - { key: J,      mods: Control|Command|Shift,   action: ScrollToBottom, mode: ~Alt       }
+  - { key: K,      mods: Control|Command|Shift,   action: ScrollToTop,    mode: ~Alt       }
+  - { key: N,      mods: Command,         action: SpawnNewInstance }
   #- { key: V,      mods: Command,         action: Paste            }
   #- { key: C,      mods: Command,         action: Copy             }
   #- { key: H,      mods: Command,         action: Hide             }
@@ -566,6 +573,8 @@ selection:
   #- { key: Copy,                     action: Copy                             }
   #- { key: L,         mods: Control, action: ClearLogNotice                   }
   #- { key: L,         mods: Control, chars: "\x0c"                            }
+  - { key: PageUp,    mods: Control|Shift,   action: ScrollLineUp,   mode: ~Alt       }
+  - { key: PageDown,  mods: Control|Shift,   action: ScrollLineDown, mode: ~Alt       }
   #- { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
   #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
   #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
