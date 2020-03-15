@@ -16,7 +16,7 @@
   "^$\UF702" = moveWordLeftAndModifySelection:;              // ctrl-shift-left
   "^$\UF703" = moveWordRightAndModifySelection:;             // ctrl-shift-right
   "^\U007F"  = deleteWordBackward:;                          // ctrl-backspace
-  "^\UF728"  = deleteWordForward:;                           // control-delete
+  "^\UF728"  = deleteWordForward:;                           // ctrl-delete
   "$\UF728"  = cut:;                                         // shift-delete
   "^\UF727"  = copy:;                                        // ctrl-insert (fn/help)
   "^\UF746"  = copy:;                                        // ctrl-insert
