@@ -1,1 +1,4 @@
-backups
+*.iml
+.DS_Store
+.idea/
+backups/
