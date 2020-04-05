@@ -4,7 +4,7 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'bling/vim-airline'
-Plug 'valloric/youcompleteme'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
