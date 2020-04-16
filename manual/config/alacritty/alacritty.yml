@@ -49,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -317,6 +317,10 @@ selection:
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   #unfocused_hollow: true
+
+  # Thickness of the cursor relative to the cell width as floating point number
+  # from `0.0` to `1.0`.
+  #thickness: 0.15
 
 # Live config reload (changes require restart)
 #live_config_reload: true
@@ -639,6 +643,24 @@ key_bindings:
   - { key: J,      mods: Command,               mode: ~Alt, action: ScrollPageDown }
   - { key: K,      mods: Control|Command|Shift, mode: ~Alt, action: ScrollToTop    }
   - { key: J,      mods: Control|Command|Shift, mode: ~Alt, action: ScrollToBottom }
+  - { key: T,        mods: Command,                  chars: "\x02\x63" }
+  - { key: Tab,      mods: Control,                  chars: "\x02\x6e" }
+  - { key: Tab,      mods: Control|Shift,            chars: "\x02\x70" }
+  - { key: Tab,      mods: Control|Command,          chars: "\x02\x6c" }
+  - { key: LBracket, mods: Command|Shift,            chars: "\x02\x70" }
+  - { key: RBracket, mods: Command|Shift,            chars: "\x02\x6e" }
+  - { key: PageUp,   mods: Control,                  chars: "\x02\x70" }
+  - { key: PageDown, mods: Control,                  chars: "\x02\x6e" }
+  - { key: Key1,     mods: Command,                  chars: "\x02\x31" }
+  - { key: Key2,     mods: Command,                  chars: "\x02\x32" }
+  - { key: Key3,     mods: Command,                  chars: "\x02\x33" }
+  - { key: Key4,     mods: Command,                  chars: "\x02\x34" }
+  - { key: Key5,     mods: Command,                  chars: "\x02\x35" }
+  - { key: Key6,     mods: Command,                  chars: "\x02\x36" }
+  - { key: Key7,     mods: Command,                  chars: "\x02\x37" }
+  - { key: Key8,     mods: Command,                  chars: "\x02\x38" }
+  - { key: Key9,     mods: Command,                  chars: "\x02\x39" }
+  - { key: Key0,     mods: Command,                  chars: "\x02\x40" }
 
 #debug:
   # Display the time it takes to redraw each frame.
