@@ -1,5 +1,7 @@
+--ignore-dir=.coverage
 --ignore-dir=.idea
 --ignore-dir=.gradle
+--ignore-dir=.nyc_output
 --ignore-dir=.settings
 --ignore-dir=Pods
 --ignore-dir=bin
