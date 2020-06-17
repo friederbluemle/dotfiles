@@ -11,6 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wsdjeg/vim-fetch'
+Plug 'zirrostig/vim-schlepp'
 call plug#end()
 
 augroup filetypedetect
@@ -81,3 +82,16 @@ noremap <C-M-Down> yyPj
 nmap <C-_> gcc
 imap <C-_> <esc>gcci
 " xmap <C-_> <Plug>Commentary
+
+" vim-schlepp
+vmap <unique> <C-h> <Plug>SchleppLeft
+vmap <unique> <C-j> <Plug>SchleppDown
+vmap <unique> <C-k> <Plug>SchleppUp
+vmap <unique> <C-l> <Plug>SchleppRight
+vmap <unique> <leader>h <Plug>SchleppDupLeft
+vmap <unique> <leader>j <Plug>SchleppDupDown
+vmap <unique> <leader>k <Plug>SchleppDupUp
+vmap <unique> <leader>l <Plug>SchleppDupRight
+vmap <unique> i   <Plug>SchleppToggleReindent
+nmap <unique> <C-j> <S-v><Plug>SchleppDown<esc>
+nmap <unique> <C-k> <S-v><Plug>SchleppUp<esc>
