@@ -28,7 +28,11 @@ set softtabstop=4
 set expandtab
 set hlsearch
 
+hi ColorColumn ctermbg=234 guibg=#1c1c1c
+let &colorcolumn="81,101,".join(range(121,320),",")
+
 autocmd FileType make setlocal noexpandtab
+autocmd FileType gitcommit execute "set colorcolumn=51,".join(range(73,320),',')
 autocmd FileType gitconfig setlocal noexpandtab shiftwidth=8 softtabstop=8
 autocmd FileType bash,sh,zsh setlocal shiftwidth=2 softtabstop=2
 
