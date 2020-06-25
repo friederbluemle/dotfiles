@@ -4,6 +4,11 @@ shift + alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
 alt - d : skhd -k "cmd - space"
 alt - e : open ~
 
+# Android menu key shortcuts
+shift + ctrl - 2 : adb shell input keyevent 82
+shift + ctrl - 3 : adb -d shell input keyevent 82
+shift + ctrl - 4 : adb -e shell input keyevent 82
+
 # focus window
 #alt - h : yabai -m window --focus west
 #alt - j : yabai -m window --focus south
