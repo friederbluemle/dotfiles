@@ -28,6 +28,15 @@ set softtabstop=4
 set expandtab
 set hlsearch
 
+" Cursor shapes in different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+" Highlight current line
+set cursorline
+hi CursorLine cterm=NONE ctermbg=234 guibg=#1c1c1c
+
 hi ColorColumn ctermbg=234 guibg=#1c1c1c
 let &colorcolumn="81,101,".join(range(121,320),",")
 
