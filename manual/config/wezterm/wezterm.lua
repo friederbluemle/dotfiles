@@ -8,4 +8,30 @@ return {
   scrollback_lines = 6000,
   selection_word_boundary = " \t\n{}[]()\"'`.,;:=",
   window_decorations = "RESIZE",
+  colors = {
+        tab_bar = {
+            background = "#222222",
+            active_tab = {
+                bg_color = "#0066bb",
+                fg_color = "#ffffff",
+                -- "Half", "Normal" or "Bold" intensity
+                -- The default is "Normal"
+                intensity = "Normal",
+                -- "None", "Single" or "Double" underline
+                -- The default is "None"
+                underline = "None",
+                italic = false,
+            },
+            inactive_tab = {
+                bg_color = "#333333",
+                fg_color = "#888888",
+                underline = "None",
+            },
+            inactive_tab_hover = {
+                bg_color = "#363636",
+                fg_color = "#909090",
+                italic = false,
+            }
+        }
+    }
 }
