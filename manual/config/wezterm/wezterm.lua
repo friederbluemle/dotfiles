@@ -1,3 +1,4 @@
+local wezterm = require 'wezterm';
 return {
   enable_scroll_bar = true,
   font_size = 13.7,
@@ -8,6 +9,10 @@ return {
   scrollback_lines = 6000,
   selection_word_boundary = " \t\n{}[]()\"'`.,;:=",
   window_decorations = "RESIZE",
+  keys = {
+    -- search for things that look like git hashes
+    {key="H", mods="SHIFT|CTRL", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
+  },
   colors = {
         tab_bar = {
             background = "#222222",
