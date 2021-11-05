@@ -1,0 +1,58 @@
+#!/bin/bash
+kernel=$(uname)
+system="$(echo "$kernel" | tr '[:upper:]' '[:lower:]')-x64"
+directory=$HOME/.node-versions
+
+# create directory
+prepare() {
+  mkdir -p $directory
+}
+
+# install specified version
+install() {
+  prepare
+  version=$1
+  package=node-v$version-$system.tar.xz
+  if [ -f "$directory/$package" ]; then
+    echo "Already installed: $version"
+    return
+  fi
+  url=https://nodejs.org/download/release/v$version/$package
+  wget $url -P $directory
+  tar -xf $directory/$package -C $directory
+}
+
+# switch active version
+switch() {
+  version=$1
+  dir="$directory/node-v$version-$system"
+  if [ ! -d "$dir" ]; then
+    echo "Not installed yet: $version"
+    exit 1
+  fi
+  ln -sf $dir/bin/node $HOME/.local/bin/node
+  ln -sf $dir/bin/npm $HOME/.local/bin/npm
+  ln -sf $dir/bin/npx $HOME/.local/bin/npx
+}
+
+# clear version override
+clear() {
+  rm -f $HOME/.local/bin/node
+  rm -f $HOME/.local/bin/npm
+  rm -f $HOME/.local/bin/npx
+}
+
+case "$1" in
+  prepare)
+    prepare
+    ;;
+  install)
+    install $2
+    ;;
+  switch)
+    switch $2
+    ;;
+  clear)
+    clear $2
+    ;;
+esac
