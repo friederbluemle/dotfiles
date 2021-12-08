@@ -9,6 +9,12 @@ return {
   scrollback_lines = 6000,
   selection_word_boundary = " \t\n{}[]()\"'`.,;:=",
   window_decorations = "RESIZE",
+  window_padding = {
+    left = 2,
+    right = 2,
+    top = 1,
+    bottom = 1,
+  },
   keys = {
     -- search for things that look like git hashes
     {key="H", mods="SHIFT|CTRL", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
