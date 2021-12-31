@@ -1,13 +1,18 @@
-local wezterm = require 'wezterm';
+local wezterm = require 'wezterm'
+
+wezterm.on("window-config-reloaded", function(window, pane)
+  window:toast_notification("wezterm", "config reloaded!", nil, 2000)
+end)
+
 return {
   enable_scroll_bar = true,
-  font_size = 13.7,
+  font_size = 15,
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
-  initial_cols = 100,
-  initial_rows = 32,
+  initial_cols = 132,
+  initial_rows = 36,
   line_height = 0.85,
-  scrollback_lines = 6000,
-  selection_word_boundary = " \t\n{}[]()\"'`.,;:=",
+  scrollback_lines = 9000,
+  selection_word_boundary = " \t\n{}[]()\"'`,;=",
   window_decorations = "RESIZE",
   window_padding = {
     left = 2,
@@ -25,23 +30,14 @@ return {
             active_tab = {
                 bg_color = "#0066bb",
                 fg_color = "#ffffff",
-                -- "Half", "Normal" or "Bold" intensity
-                -- The default is "Normal"
-                intensity = "Normal",
-                -- "None", "Single" or "Double" underline
-                -- The default is "None"
-                underline = "None",
-                italic = false,
             },
             inactive_tab = {
                 bg_color = "#333333",
                 fg_color = "#888888",
-                underline = "None",
             },
             inactive_tab_hover = {
-                bg_color = "#363636",
-                fg_color = "#909090",
-                italic = false,
+                bg_color = "#333333",
+                fg_color = "#888888",
             }
         }
     }
