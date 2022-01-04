@@ -8,5 +8,9 @@ if [ -n "$ZSH_VERSION" ]; then
   fi
   if [[ -f "/usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+  else
+    if [[ -f "/usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+      source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+    fi
   fi
 fi
