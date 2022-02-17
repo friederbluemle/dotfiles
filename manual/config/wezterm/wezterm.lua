@@ -25,20 +25,20 @@ return {
     {key="H", mods="SHIFT|CTRL", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
   },
   colors = {
-        tab_bar = {
-            background = "#222222",
-            active_tab = {
-                bg_color = "#0066bb",
-                fg_color = "#ffffff",
-            },
-            inactive_tab = {
-                bg_color = "#333333",
-                fg_color = "#888888",
-            },
-            inactive_tab_hover = {
-                bg_color = "#333333",
-                fg_color = "#888888",
-            }
-        }
+    tab_bar = {
+      background = "#222222",
+      active_tab = {
+        bg_color = "#0066bb",
+        fg_color = "#ffffff",
+      },
+      inactive_tab = {
+        bg_color = "#333333",
+        fg_color = "#888888",
+      },
+      inactive_tab_hover = {
+        bg_color = "#333333",
+        fg_color = "#888888",
+      }
     }
+  }
 }
