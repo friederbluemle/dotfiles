@@ -40,5 +40,19 @@ return {
         fg_color = "#888888",
       }
     }
+  },
+  hyperlink_rules = {
+    {
+      regex = "\\b\\w+://(?:[\\w.-]+)\\.[a-z]{2,15}\\S*\\b",
+      format = "$0",
+    },
+    {
+      regex = "\\bfile://\\S*\\b",
+      format = "$0",
+    },
+    {
+      regex = "\\b([A-Z]{3,9}-\\d+)\\b",
+      format = "https://jira.walmart.com/browse/$1",
+    },
   }
 }
