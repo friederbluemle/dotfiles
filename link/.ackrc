@@ -10,4 +10,5 @@
 --ignore-dir=gen
 --ignore-dir=node_modules
 --ignore-dir=vendor
+--ignore-file=ext:iml
 --sort-files

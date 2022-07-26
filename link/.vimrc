@@ -53,6 +53,11 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinLeave * call clearmatches()
 
+" Go to last file(s) if invoked without arguments.
+autocmd VimLeave * nested execute "mksession! " . $HOME . "/.vim-session"
+autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim-session") |
+    \ execute "source " . $HOME . "/.vim-session"
+
 " Ctrl+\: Toggle NERDTree
 map <C-\> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
