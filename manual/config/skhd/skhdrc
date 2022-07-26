@@ -1,5 +1,6 @@
 # open terminal
 shift + alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+#shift + alt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 alt - d : skhd -k "cmd - space"
 alt - e : open ~
