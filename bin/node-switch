@@ -1,18 +1,20 @@
 #!/bin/bash
 kernel=$(uname)
-system="$(echo "$kernel" | tr '[:upper:]' '[:lower:]')-x64"
+machine=${MACHINE:-$(uname -m)}
+suffix="$(echo "$kernel" | tr '[:upper:]' '[:lower:]')-$machine"
 directory=$HOME/.node-versions
 
 # create directory
 prepare() {
   mkdir -p $directory
+  mkdir -p $HOME/.local/bin
 }
 
 # install specified version
 install() {
   prepare
   version=$1
-  package=node-v$version-$system.tar.xz
+  package=node-v$version-$suffix.tar.xz
   if [ -f "$directory/$package" ]; then
     echo "Already installed: $version"
     return
@@ -25,9 +27,11 @@ install() {
 # switch active version
 switch() {
   version=$1
-  dir="$directory/node-v$version-$system"
+  dir="$directory/node-v$version-$suffix"
   if [ ! -d "$dir" ]; then
-    echo "Not installed yet: $version"
+    echo "Not found: $dir"
+    echo "Available:"
+    ls -1d $directory/*/
     exit 1
   fi
   ln -sf $dir/bin/node $HOME/.local/bin/node
