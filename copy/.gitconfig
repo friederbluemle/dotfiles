@@ -9,6 +9,21 @@
 	defaultRemote = origin
 [commit]
 	verbose = true
+[rebase]
+	autosquash = true
+	stat = true
+[rerere]
+	enabled = true
+[status]
+	submodulesummary = true
+[tag]
+	sort = version:refname
+[advice]
+	commitBeforeMerge = false
+	detachedHead = false
+	pushNonFastForward = false
+	resolveConflict = false
+	statusHints = false
 [color]
 	ui = auto
 [color "diff-highlight"]
@@ -23,14 +38,3 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[rebase]
-	autosquash = true
-	stat = true
-[rerere]
-	enabled = true
-[advice]
-	detachedHead = false
-	pushNonFastForward = false
-	statusHints = false
-	commitBeforeMerge = false
-	resolveConflict = false
