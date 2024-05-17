@@ -34,6 +34,7 @@ switch() {
     ls -1d $directory/*/
     exit 1
   fi
+  [ -e "$dir/bin/corepack" ] && ln -sf $dir/bin/corepack $HOME/.local/bin/corepack || rm -f "$HOME/.local/bin/corepack"
   ln -sf $dir/bin/node $HOME/.local/bin/node
   ln -sf $dir/bin/npm $HOME/.local/bin/npm
   ln -sf $dir/bin/npx $HOME/.local/bin/npx
@@ -41,6 +42,7 @@ switch() {
 
 # clear version override
 clear() {
+  rm -f $HOME/.local/bin/corepack
   rm -f $HOME/.local/bin/node
   rm -f $HOME/.local/bin/npm
   rm -f $HOME/.local/bin/npx
