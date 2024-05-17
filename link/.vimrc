@@ -11,6 +11,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wsdjeg/vim-fetch'
 Plug 'zirrostig/vim-schlepp'
+Plug 'zivyangll/git-blame.vim'
+Plug 'rhysd/conflict-marker.vim'
 call plug#end()
 
 augroup filetypedetect
@@ -112,3 +114,6 @@ vmap <unique> <leader>l <Plug>SchleppDupRight
 vmap <unique> i   <Plug>SchleppToggleReindent
 nmap <unique> <C-j> <S-v><Plug>SchleppDown<esc>
 nmap <unique> <C-k> <S-v><Plug>SchleppUp<esc>
+
+" git-blame
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
