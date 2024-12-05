@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Error: Please provide an enterprise name as an argument."
+  exit 1
+fi
+
+enterprise="$1"
+
+actions=(
+  "action:member.promote"
+  "action:member.demote"
+  "action:repo.add_collaborator"
+  "action:repo.remove_collaborator"
+  "action:team.add_membership"
+  "action:team.remove_membership"
+  "action:org.update_member"
+)
+
+phrase=$(IFS=" OR "; echo "${actions[*]}")
+
+api_command="gh api /enterprises/$enterprise/audit-log \
+  --jq '.[] | {action, actor, user, repository, org, created_at}' \
+  --paginate \
+  -F phrase='$phrase'"
+
+output=$(eval $api_command 2>&1)
+exit_code=$?
+
+if [ $exit_code -eq 0 ]; then
+  echo "$output"
+else
+  echo "Error occurred while fetching audit log: $output"
+fi
