@@ -10,7 +10,7 @@ if [[ -z $ANDROID_SDK_ROOT ]]; then
     if [[ -d $p ]]; then
       export ANDROID_HOME=$p
       export ANDROID_SDK_ROOT=$p
-      PATH=$PATH:$p/tools:$p/tools/bin:$p/platform-tools
+      PATH=$PATH:$p/cmdline-tools/latest/bin:$p/platform-tools
       break
     fi
   done
