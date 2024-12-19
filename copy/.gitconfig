@@ -15,7 +15,7 @@
 [rerere]
 	enabled = true
 [status]
-	submodulesummary = true
+	submoduleSummary = true
 [tag]
 	sort = version:refname
 [advice]
