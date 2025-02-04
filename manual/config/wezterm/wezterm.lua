@@ -23,6 +23,9 @@ return {
   keys = {
     -- search for things that look like git hashes
     {key="H", mods="SHIFT|CTRL", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
+    -- Prevent WezTerm from overriding standard 'undo' Readline action (C-_)
+    {key="-", mods="SHIFT|CTRL", action=wezterm.action.DisableDefaultAssignment},
+    {key="_", mods="SHIFT|CTRL", action=wezterm.action.DisableDefaultAssignment},
   },
   colors = {
     tab_bar = {
