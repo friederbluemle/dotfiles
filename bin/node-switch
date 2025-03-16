@@ -1,6 +1,9 @@
 #!/bin/bash
 kernel=$(uname)
 machine=${MACHINE:-$(uname -m)}
+if [ $machine == "x86_64" ]; then
+  machine="x64"
+fi
 suffix="$(echo "$kernel" | tr '[:upper:]' '[:lower:]')-$machine"
 directory=$HOME/.node-versions
 
