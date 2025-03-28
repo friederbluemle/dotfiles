@@ -1,18 +1,18 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Quickly turn on or off the systemui demo mode on a connected Android device/emulator
+
 if [[ $1 != "on" && $1 != "off" ]]; then
-  echo "Usage: $0 [on|off] [hhmm]" >&2
+  echo "Usage: $0 on|off [hhmm]" >&2
   exit
 fi
-if [[ "$2" != "" ]]; then
-  HHMM="$2"
-fi
-if [ $1 == "on" ]; then
-  if [[ "$HHMM" != "" ]]; then
-    adb shell am broadcast -a com.android.systemui.demo -e command clock -e hhmm ${HHMM}
+if [[ $1 == "on" ]]; then
+  if [[ "$2" != "" ]]; then
+    adb shell am broadcast -a com.android.systemui.demo -e command clock -e hhmm "${2}"
   fi
   adb shell am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
   adb shell am broadcast -a com.android.systemui.demo -e command network -e wifi show -e level 4 -e mobile hide
   adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false
-elif [ $1 == "off" ]; then
+elif [[ $1 == "off" ]]; then
   adb shell am broadcast -a com.android.systemui.demo -e command exit
 fi
