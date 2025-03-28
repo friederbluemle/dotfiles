@@ -20,9 +20,15 @@ augroup filetypedetect
     au BufRead,BufNewFile PULLREQ_EDITMSG setfiletype gitcommit
 augroup END
 
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif
-endif
+" Restore cursor position
+autocmd BufReadPost *
+    \ if index(['gitcommit', 'gitrebase'], &filetype) == -1
+    \ && expand('%:t') !~# '^COMMIT_EDITMSG\|MERGE_MSG\|PULLREQ_EDITMSG\|TAG_EDITMSG$'
+    \ && expand('%:p:h') !~# '/\.git/'
+    \ && expand('%:p') !~# '^/tmp/'
+    \ && line("'\"") > 0 && line("'\"") <= line("$")
+    \ | exe "normal! g`\""
+    \ | endif
 
 set shiftwidth=4
 set softtabstop=4
@@ -55,10 +61,11 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinLeave * call clearmatches()
 
-" Go to last file(s) if invoked without arguments.
-autocmd VimLeave * nested execute "mksession! " . $HOME . "/.vim-session"
+" Save and restore session (if invoked without arguments).
+autocmd VimLeave * nested if bufname('%') !~ 'COMMIT_EDITMSG\|MERGE_MSG\|PULLREQ_EDITMSG\|TAG_EDITMSG' |
+    \ execute "mksession! " . $HOME . "/.vim-session" | endif
 autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim-session") |
-    \ execute "source " . $HOME . "/.vim-session"
+    \ execute "source " . $HOME . "/.vim-session" | endif
 
 " Ctrl+\: Toggle NERDTree
 map <C-\> :NERDTreeToggle<CR>
