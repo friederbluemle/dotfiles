@@ -1,0 +1,10 @@
+alias b=branches
+alias 11='branches 1'
+alias 22='branches 2'
+alias 33='branches 3'
+alias 44='branches 4'
+alias 55='branches 5'
+alias 66='branches 6'
+alias 77='branches 7'
+alias 88='branches 8'
+alias 99='branches 9'

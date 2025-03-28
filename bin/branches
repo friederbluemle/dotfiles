@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+# List or switch to recently checked-out Git branches by index
+
+refs=($(
+  git reflog --pretty='%gs' |
+    sed -n 's/^checkout: moving from .* to //p' |
+    awk '!x[$0]++' |
+    head -n 10
+))
+[[ -z $1 ]] && for i in {1..${#refs[@]}}; do
+  echo "$((i - 1))\t${refs[i]}"
+done
+[[ $1 =~ '^[0-9]+$' ]] && (($1 + 1 <= ${#refs[@]})) &&
+  git checkout "${refs[$((1 + $1))]}"
