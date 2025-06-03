@@ -23,7 +23,7 @@ install() {
     return
   fi
   url=https://nodejs.org/download/release/v$version/$package
-  wget $url -P $directory
+  curl -o "$directory/$(basename "$url")" "$url"
   tar -xf $directory/$package -C $directory
 }
 
