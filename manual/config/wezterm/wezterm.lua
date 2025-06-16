@@ -21,6 +21,10 @@ return {
     bottom = 1,
   },
   keys = {
+    -- Re-enable standard Readline combinations (CMD is located in ALT position on Apple keyboards)
+    {key="b", mods="CMD", action=wezterm.action.SendKey{key="b", mods="ALT"}},
+    {key="d", mods="CMD", action=wezterm.action.SendKey{key="d", mods="ALT"}},
+    {key="f", mods="CMD", action=wezterm.action.SendKey{key="f", mods="ALT"}},
     -- search for things that look like git hashes
     {key="H", mods="SHIFT|CTRL", action=wezterm.action{Search={Regex="[a-f0-9]{6,}"}}},
     -- Prevent WezTerm from overriding standard 'undo' Readline action (C-_)
