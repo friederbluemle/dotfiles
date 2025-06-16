@@ -69,4 +69,21 @@ case "$1" in
   clear)
     clear
     ;;
+  *)
+    if [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+      version="$1"
+      package="node-v$version-$suffix.tar.xz"
+      if [ ! -f "$directory/$package" ]; then
+        install "$version"
+      fi
+      switch "$version"
+    else
+      echo "Usage:"
+      echo "  node-switch <version>      # install + switch"
+      echo "  node-switch install <ver>  # install only"
+      echo "  node-switch switch <ver>   # switch only"
+      echo "  node-switch clear          # clear links"
+      exit 1
+    fi
+    ;;
 esac
