@@ -23,7 +23,11 @@ install() {
     return
   fi
   url="https://nodejs.org/download/release/v$version/$package"
-  curl -o "$directory/$(basename "$url")" "$url"
+  echo "Downloading $url"
+  curl -fLo "$directory/$package" "$url" || {
+    echo "Download failed"
+    exit 1
+  }
   tar -xf "$directory/$package" -C "$directory"
 }
 
@@ -41,6 +45,7 @@ switch() {
   ln -sf "$dir/bin/node" "$HOME/.local/bin/node"
   ln -sf "$dir/bin/npm" "$HOME/.local/bin/npm"
   ln -sf "$dir/bin/npx" "$HOME/.local/bin/npx"
+  echo "Switched to Node.js $version"
 }
 
 # clear version override
