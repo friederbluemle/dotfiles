@@ -1,7 +1,7 @@
 #!/bin/bash
 kernel=$(uname)
 machine=${MACHINE:-$(uname -m)}
-if [ $machine == "x86_64" ]; then
+if [ "$machine" == "x86_64" ]; then
   machine="x64"
 fi
 suffix="$(echo "$kernel" | tr '[:upper:]' '[:lower:]')-$machine"
@@ -9,22 +9,22 @@ directory=$HOME/.node-versions
 
 # create directory
 prepare() {
-  mkdir -p $directory
-  mkdir -p $HOME/.local/bin
+  mkdir -p "$directory"
+  mkdir -p "$HOME/.local/bin"
 }
 
 # install specified version
 install() {
   prepare
   version=$1
-  package=node-v$version-$suffix.tar.xz
+  package="node-v$version-$suffix.tar.xz"
   if [ -f "$directory/$package" ]; then
     echo "Already installed: $version"
     return
   fi
-  url=https://nodejs.org/download/release/v$version/$package
+  url="https://nodejs.org/download/release/v$version/$package"
   curl -o "$directory/$(basename "$url")" "$url"
-  tar -xf $directory/$package -C $directory
+  tar -xf "$directory/$package" -C "$directory"
 }
 
 # switch active version
@@ -34,21 +34,21 @@ switch() {
   if [ ! -d "$dir" ]; then
     echo "Not found: $dir"
     echo "Available:"
-    ls -1d $directory/*/
+    ls -1d "$directory"/*/
     exit 1
   fi
-  [ -e "$dir/bin/corepack" ] && ln -sf $dir/bin/corepack $HOME/.local/bin/corepack || rm -f "$HOME/.local/bin/corepack"
-  ln -sf $dir/bin/node $HOME/.local/bin/node
-  ln -sf $dir/bin/npm $HOME/.local/bin/npm
-  ln -sf $dir/bin/npx $HOME/.local/bin/npx
+  [ -e "$dir/bin/corepack" ] && ln -sf "$dir/bin/corepack" "$HOME/.local/bin/corepack" || rm -f "$HOME/.local/bin/corepack"
+  ln -sf "$dir/bin/node" "$HOME/.local/bin/node"
+  ln -sf "$dir/bin/npm" "$HOME/.local/bin/npm"
+  ln -sf "$dir/bin/npx" "$HOME/.local/bin/npx"
 }
 
 # clear version override
 clear() {
-  rm -f $HOME/.local/bin/corepack
-  rm -f $HOME/.local/bin/node
-  rm -f $HOME/.local/bin/npm
-  rm -f $HOME/.local/bin/npx
+  rm -f "$HOME/.local/bin/corepack"
+  rm -f "$HOME/.local/bin/node"
+  rm -f "$HOME/.local/bin/npm"
+  rm -f "$HOME/.local/bin/npx"
 }
 
 case "$1" in
@@ -56,12 +56,12 @@ case "$1" in
     prepare
     ;;
   install)
-    install $2
+    install "$2"
     ;;
   switch)
-    switch $2
+    switch "$2"
     ;;
   clear)
-    clear $2
+    clear
     ;;
 esac
