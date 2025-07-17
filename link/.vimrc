@@ -50,7 +50,7 @@ let &colorcolumn="81,101,".join(range(121,320),",")
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitcommit execute "set colorcolumn=51,".join(range(73,320),',')
 autocmd FileType gitconfig setlocal noexpandtab shiftwidth=8 softtabstop=8
-autocmd FileType bash,sh,zsh setlocal shiftwidth=2 softtabstop=2
+autocmd FileType bash,javascript,sh,typescript,typescriptreact,zsh setlocal shiftwidth=2 softtabstop=2
 
 " Show trailing whitespace and spaces before a tab
 " except on the current line in insert mode
