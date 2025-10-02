@@ -33,6 +33,47 @@
         "id": "7",
         "type": "git-changes",
         "color": "yellow"
+      },
+      {
+        "id": "8eb1327e-dcf3-4d63-8da6-723ccf070fae",
+        "type": "separator",
+        "rawValue": false
+      },
+      {
+        "id": "3cd7b9f9-a899-4fa5-b1a9-3994b7de5e5d",
+        "type": "output-style"
+      },
+      {
+        "id": "45ccf7ca-814f-4dea-bf37-95415df1f8fe",
+        "type": "flex-separator"
+      },
+      {
+        "id": "6775ddbb-adc9-4a8b-9844-96053dfa7b63",
+        "type": "context-percentage-usable"
+      },
+      {
+        "id": "e37f4128-f940-4564-994c-f80055bf3d2e",
+        "type": "separator"
+      },
+      {
+        "id": "81156b46-c771-4021-951a-0d5ccab3ab06",
+        "type": "session-clock"
+      },
+      {
+        "id": "1eaf393e-b6a2-4b0f-aa75-bf75412cf4bf",
+        "type": "separator"
+      },
+      {
+        "id": "93e908ee-b2d4-44ca-aeb7-ba153c55c22f",
+        "type": "block-timer"
+      },
+      {
+        "id": "b03d701c-4425-438d-9e23-1349e51216e8",
+        "type": "separator"
+      },
+      {
+        "id": "ca22f3e0-672f-48ff-890c-7a7d0b2da8ba",
+        "type": "version"
       }
     ],
     [],
@@ -40,7 +81,7 @@
   ],
   "flexMode": "full-minus-40",
   "compactThreshold": 60,
-  "colorLevel": 2,
+  "colorLevel": 3,
   "inheritSeparatorColors": false,
   "globalBold": false,
   "powerline": {
