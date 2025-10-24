@@ -30,6 +30,8 @@ return {
     -- Prevent WezTerm from overriding standard 'undo' Readline action (C-_)
     {key="-", mods="SHIFT|CTRL", action=wezterm.action.DisableDefaultAssignment},
     {key="_", mods="SHIFT|CTRL", action=wezterm.action.DisableDefaultAssignment},
+    -- Enable multi-line edit (Shift+Enter inserts line break)
+    {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
   },
   colors = {
     tab_bar = {
