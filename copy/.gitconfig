@@ -21,6 +21,7 @@
 	sort = version:refname
 [advice]
 	commitBeforeMerge = false
+	defaultBranchName = false
 	detachedHead = false
 	pushNonFastForward = false
 	resolveConflict = false
