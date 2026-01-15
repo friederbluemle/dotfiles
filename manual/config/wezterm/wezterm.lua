@@ -61,7 +61,7 @@ return {
     },
     {
       regex = "\\b([A-Z]{3,9}-\\d+)\\b",
-      format = "https://jira.walmart.com/browse/$1",
+      format = "https://linear.app/0xproject/issue/$1",
     },
   }
 }
