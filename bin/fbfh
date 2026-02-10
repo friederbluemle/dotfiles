@@ -1,0 +1,28 @@
+#!/bin/bash
+
+CONF=/etc/fix-hostname
+if [[ ! -f "$CONF" ]]; then
+  echo "$CONF not found" >&2
+  exit 1
+fi
+
+DESIRED_HOSTNAME=$(< "$CONF")
+DESIRED_HOSTNAME=${DESIRED_HOSTNAME%%[[:space:]]*}
+
+if [[ -z "$DESIRED_HOSTNAME" ]]; then
+  echo "$CONF is empty" >&2
+  exit 1
+fi
+
+current=$(scutil --get ComputerName 2>/dev/null)
+local_hn=$(scutil --get LocalHostName 2>/dev/null)
+host_hn=$(scutil --get HostName 2>/dev/null)
+
+if [[ "$current" != "$DESIRED_HOSTNAME" ]] ||
+   [[ "$local_hn" != "$DESIRED_HOSTNAME" ]] ||
+   [[ "$host_hn" != "$DESIRED_HOSTNAME" ]]; then
+  scutil --set ComputerName "$DESIRED_HOSTNAME"
+  scutil --set LocalHostName "$DESIRED_HOSTNAME"
+  scutil --set HostName "$DESIRED_HOSTNAME"
+  logger -t fix-hostname "Hostname corrected to $DESIRED_HOSTNAME"
+fi
