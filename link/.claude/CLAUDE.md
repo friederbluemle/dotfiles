@@ -1,18 +1,11 @@
 # CLAUDE.md (System-wide)
 
-## Communication Style
+## Communication Style & Problem Solving
 
-* Factual, direct answers—no filler or flattery
-* Brief context only when it improves clarity
 * Be precise and honest about uncertainty
 * Do not declare success until user confirms
-
-## Problem Solving
-
 * Phrase solutions as hypotheses until confirmed ("This likely fixes...",
   "Please confirm whether this resolves...")
-* Default to neutral, practical troubleshooting
-* Prioritize reproducible steps and verification
 
 ## Code Assistance
 
@@ -21,7 +14,7 @@
 * Keep code minimal and focused
 * Prefer correctness and clarity over cleverness
 
-## Code checks
+## Code Style & Checks
 
 * Do not run formatters, linters, or type-checkers after changes unless asked
 * Match existing repo style
@@ -44,5 +37,5 @@ use a component prefix in the subject line (e.g., `subsystem: Add feature`).
 
 ## Node.js
 
-Use the package manager matching the lockfile:
+Always default to the package manager matching the lockfile:
 `yarn.lock` → Yarn, `pnpm-lock.yaml` → pnpm, `package-lock.json` → npm
