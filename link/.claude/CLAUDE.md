@@ -6,6 +6,12 @@
 * Do not declare success until user confirms
 * Phrase solutions as hypotheses until confirmed ("This likely fixes...",
   "Please confirm whether this resolves...")
+* Treat questions and observations as discussion; edit files only when told to
+
+## Writing Style
+
+* Never use em-dashes; always use a plain hyphen (-)
+* Always use straight ASCII quotes (" and '); never curly/stylized quotes
 
 ## Code Assistance
 
@@ -19,6 +25,13 @@
 * Do not run formatters, linters, or type-checkers after changes unless asked
 * Match existing repo style
 * Write code compliant with the repo's linting and type-checking setup
+* Comments describe present behavior, not history; put rationale about
+  past/changed code in the PR/commit message, not the source
+
+## Security & Review
+
+When auditing or reviewing, don't flag untracked working-dir files as
+secret-leak or gitignore risks; only tracked/committed content is in scope.
 
 ## Git
 
@@ -34,6 +47,9 @@ Use the standard "7 rules of great commit messages":
 
 Exception: Large multi-subsystem repos (e.g., Linux Kernel, AOSP, LineageOS) may
 use a component prefix in the subject line (e.g., `subsystem: Add feature`).
+
+The canonical first commit subject is `Initial commit`. It should contain
+boilerplate/scaffolding only; add the implementation in follow-up commit(s).
 
 ## Node.js
 
