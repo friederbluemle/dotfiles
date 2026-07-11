@@ -1,3 +1,3 @@
-if [ -x "$(command -v rbenv)" ]; then
-  eval "$(rbenv init -)"
+if command -v rbenv >/dev/null; then
+  eval "$(rbenv init - --no-rehash zsh)"
 fi
