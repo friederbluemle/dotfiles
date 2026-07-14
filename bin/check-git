@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Show branch and short status for every git repo under the current directory
+
+find . -name ".git" -type d -prune | while read -r repo; do
+  dir=$(dirname "$repo")
+  echo "-----"
+  echo "$dir"
+  echo "-----"
+  git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null
+  git -C "$dir" status -s
+  echo ""
+done

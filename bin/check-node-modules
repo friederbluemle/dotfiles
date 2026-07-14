@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Show disk usage of node_modules dirs up to two levels below the current directory
+
+find . -maxdepth 2 -name "node_modules" -type d -prune -exec du -sh {} \;
