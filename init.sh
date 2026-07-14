@@ -13,4 +13,4 @@ alias initdotfiles="gcl2src $GITHUB_USER/dotfiles && ln -s $SRC_ROOT/$GITHUB_USE
 alias initmisc="gcl2src $GITHUB_USER/misc && ln -s $SRC_ROOT/$GITHUB_USER/misc $HOME/.misc"
 alias initomz="gcl2src ohmyzsh/ohmyzsh && ln -s $SRC_ROOT/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh"
 alias initomzfork="pushd $SRC_ROOT/ohmyzsh/ohmyzsh && git remote add $GITHUB_USER_SHORT https://github.com/$GITHUB_USER/ohmyzsh.git && git fetch --all && git checkout $GITHUB_USER_SHORT-custom && popd"
-alias initzshrc="ln -s $SRC_ROOT/ohmyzsh/ohmyzsh/templates/zshrc.zsh-template $HOME/.zshrc"
+alias initzshrc="ln -s ./.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc"
