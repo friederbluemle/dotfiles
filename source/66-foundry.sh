@@ -1,4 +1,3 @@
-PREFIX="$HOME/.foundry"
-if [ -d "$PREFIX/bin" ]; then
-  PATH="$PATH:$PREFIX/bin"
+if [ -d "$HOME/.foundry/bin" ]; then
+  PATH="$PATH:$HOME/.foundry/bin"
 fi

@@ -2,7 +2,7 @@ if [[ -z $ANDROID_SDK_ROOT ]]; then
   PATHS=(
     "/opt/android-sdk"
     "/opt/android-sdk-linux"
-    "/Users/$USER/Library/Android/sdk"
+    "$HOME/Library/Android/sdk"
   )
 
   for p in "${PATHS[@]}"
@@ -14,4 +14,5 @@ if [[ -z $ANDROID_SDK_ROOT ]]; then
       break
     fi
   done
+  unset PATHS p
 fi

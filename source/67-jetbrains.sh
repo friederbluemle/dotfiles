@@ -1,4 +1,3 @@
-PREFIX="$HOME/Library/Application Support/JetBrains/Toolbox"
-if [ -d "$PREFIX/scripts" ]; then
-  PATH="$PATH:$PREFIX/scripts"
+if [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]; then
+  PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 fi

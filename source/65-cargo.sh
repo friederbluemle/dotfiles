@@ -1,4 +1,3 @@
-CARGOPATH="$HOME/.cargo"
-if [[ -d "$CARGOPATH/bin" ]]; then
-  PATH="$CARGOPATH/bin:$PATH"
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  PATH="$HOME/.cargo/bin:$PATH"
 fi
