@@ -5,6 +5,8 @@
   "\UF72D"   = pageDown:;                                    // pgdown
   "$\UF72C"  = pageUpAndModifySelection:;                    // shift-pgup
   "$\UF72D"  = pageDownAndModifySelection:;                  // shift-pgdown
+  "~\UF72C"  = scrollPageUp:;                                // opt-pgup (scroll only)
+  "~\UF72D"  = scrollPageDown:;                              // opt-pgdown (scroll only)
   "$\UF729"  = moveToBeginningOfLineAndModifySelection:;     // shift-home
   "$\UF72B"  = moveToEndOfLineAndModifySelection:;           // shift-end
   "^\UF729"  = moveToBeginningOfDocument:;                   // ctrl-home
@@ -15,6 +17,10 @@
   "^\UF703"  = moveWordRight:;                               // ctrl-right
   "^$\UF702" = moveWordLeftAndModifySelection:;              // ctrl-shift-left
   "^$\UF703" = moveWordRightAndModifySelection:;             // ctrl-shift-right
+  "^\UF700"  = moveToBeginningOfParagraph:;                  // ctrl-up
+  "^\UF701"  = moveToEndOfParagraph:;                        // ctrl-down
+  "^$\UF700" = moveToBeginningOfParagraphAndModifySelection:; // ctrl-shift-up
+  "^$\UF701" = moveToEndOfParagraphAndModifySelection:;      // ctrl-shift-down
   "^\U007F"  = deleteWordBackward:;                          // ctrl-backspace
   "^\UF728"  = deleteWordForward:;                           // ctrl-delete
   "$\UF728"  = cut:;                                         // shift-delete
@@ -22,5 +28,6 @@
   "^\UF746"  = copy:;                                        // ctrl-insert
   "$\UF727"  = paste:;                                       // shift-insert (fn/help)
   "$\UF746"  = paste:;                                       // shift-insert
+  "^$\UF727" = yank:;                                        // ctrl-shift-ins (fn/help)
   "^$\UF746" = yank:;                                        // ctrl-shift-ins
 }
