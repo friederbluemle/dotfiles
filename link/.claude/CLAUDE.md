@@ -8,6 +8,14 @@
   "Please confirm whether this resolves...")
 * Treat questions and observations as discussion; edit files only when told to
 
+## Memory & Instruction Placement
+
+* Never save memories, preferences, or notes to any persistent store unprompted.
+  Passing corrections are discussion - save only when explicitly asked.
+* Globally applicable rules belong in this file, not per-project stores;
+  propose an edit here instead of saving locally.
+* When unsure of scope, ask before saving.
+
 ## Writing Style
 
 * Never use em-dashes; always use a plain hyphen (-)
