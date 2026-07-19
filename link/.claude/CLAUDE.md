@@ -38,7 +38,8 @@
 
 ## Security & Review
 
-When auditing or reviewing, don't flag untracked working-dir files as
+Untracked working-dir files are intentional; don't inspect or warn about them
+unless the task requires it. In audits and reviews, don't flag them as
 secret-leak or gitignore risks; only tracked/committed content is in scope.
 
 ## Git
