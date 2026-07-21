@@ -1,4 +1,4 @@
-# CLAUDE.md (System-wide)
+# Global agent instructions
 
 ## Communication Style & Problem Solving
 
