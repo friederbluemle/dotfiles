@@ -26,3 +26,7 @@ executes a user-writable file as root.
 sudo launchctl bootout system/org.fbluemle.fbfh
 sudo rm /Library/LaunchDaemons/org.fbluemle.fbfh.plist /usr/local/bin/fbfh
 ```
+
+## License
+
+[MIT](LICENSE)
