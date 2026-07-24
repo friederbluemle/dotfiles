@@ -33,6 +33,10 @@ The aliases are parameterized by `GITHUB_USER` and `GITHUB_USER_SHORT`,
 which default to my values; `initomzfork` checks out the fork's
 `$GITHUB_USER_SHORT-custom` branch.
 
+Homebrew packages are tracked as per-machine Brewfiles in the misc
+repo; `brew-backup` dumps this machine's state there and
+`brew-backup restore` reinstalls it.
+
 ## Syncing
 
 ```sh
@@ -63,6 +67,9 @@ Some of the utilities in `bin/`:
 
 - `branches` - list recently checked-out git branches, or switch to one
   by index (aliased to `b` and `11`-`99`)
+- `brew-backup` - track Homebrew packages as per-machine Brewfiles in
+  the misc repo, with entries common to all machines promoted to a
+  shared base file
 - `check-git` - show branch and short status for every git repo under
   the current directory
 - `check-node-modules` - show disk usage of nearby `node_modules` dirs

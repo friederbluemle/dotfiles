@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+# Back up Homebrew state as Brewfiles in the misc repo.
+#
+# A machine's full package set is Brewfile-base plus Brewfile-<hostname>;
+# machine files hold only what is particular to that machine.
+#
+#   brew-backup            dump this machine's packages (minus base)
+#   brew-backup promote    move entries common to all machines into base
+#   brew-backup restore    brew bundle install base + this machine's file
+
+set -e
+
+dir="${MISC:-$HOME/.misc}/homebrew"
+base="$dir/Brewfile-base"
+mine="$dir/Brewfile-$(hostname -s)"
+
+# Group lines like brew bundle dump: taps first, then packages by type.
+sort_brewfile() {
+  local input kind
+  input=$(cat)
+  for kind in tap brew cask mas whalebrew vscode npm go cargo; do
+    grep "^$kind \"" <<< "$input" | sort || true
+  done
+  grep -vE '^(tap|brew|cask|mas|whalebrew|vscode|npm|go|cargo) "' <<< "$input" || true
+}
+
+cmd_dump() {
+  local tmp missing
+  tmp=$(mktemp)
+  # Homebrew state only; skip other package managers' globals
+  brew bundle dump --force --no-describe \
+    --no-vscode --no-go --no-cargo --no-npm --file="$tmp"
+  mkdir -p "$dir"
+  if [[ -s "$base" ]]; then
+    grep -vxF -f "$base" "$tmp" > "$mine" || true
+    missing=$(grep -vxF -f "$tmp" "$base" || true)
+    if [[ -n "$missing" ]]; then
+      echo "In Brewfile-base but not installed here (demote?):"
+      sed 's/^/  /' <<< "$missing"
+    fi
+  else
+    cp "$tmp" "$mine"
+  fi
+  rm -f "$tmp"
+  git -C "$dir" status -s -- .
+}
+
+cmd_promote() {
+  local machines=() f common tmp
+  for f in "$dir"/Brewfile-*; do
+    [[ "$f" == "$base" ]] || machines+=("$f")
+  done
+  if (( ${#machines[@]} < 2 )); then
+    echo "Nothing to promote: need at least two machine files" >&2
+    exit 1
+  fi
+  common=$(mktemp)
+  tmp=$(mktemp)
+  cp "${machines[0]}" "$common"
+  for f in "${machines[@]:1}"; do
+    grep -xF -f "$f" "$common" > "$tmp" || true
+    cp "$tmp" "$common"
+  done
+  if [[ ! -s "$common" ]]; then
+    echo "No entries common to all machines"
+    rm -f "$common" "$tmp"
+    return
+  fi
+  touch "$base"
+  cat "$base" "$common" | sort_brewfile > "$tmp"
+  cp "$tmp" "$base"
+  for f in "${machines[@]}"; do
+    grep -vxF -f "$common" "$f" > "$tmp" || true
+    cp "$tmp" "$f"
+  done
+  echo "Promoted to Brewfile-base:"
+  sed 's/^/  /' "$common"
+  rm -f "$common" "$tmp"
+  git -C "$dir" status -s -- .
+}
+
+cmd_restore() {
+  local f found=
+  for f in "$base" "$mine"; do
+    if [[ -s "$f" ]]; then
+      brew bundle install --file="$f"
+      found=1
+    fi
+  done
+  if [[ -z "$found" ]]; then
+    echo "No Brewfiles for this machine in $dir" >&2
+    exit 1
+  fi
+}
+
+case "${1:-dump}" in
+  dump)    cmd_dump ;;
+  promote) cmd_promote ;;
+  restore) cmd_restore ;;
+  *)
+    echo "Usage: brew-backup [dump|promote|restore]" >&2
+    exit 1
+    ;;
+esac
