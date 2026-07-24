@@ -1,3 +1,5 @@
+# Aliases intentionally expand variables at definition time.
+# shellcheck disable=SC2139
 export GITHUB_USER=${GITHUB_USER:=friederbluemle}
 export GITHUB_USER_SHORT=${GITHUB_USER_SHORT:=fb}
 export SRC_ROOT=$HOME/src

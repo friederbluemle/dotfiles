@@ -37,7 +37,7 @@ cmd_dump() {
     missing=$(grep -vxF -f "$tmp" "$base" || true)
     if [[ -n "$missing" ]]; then
       echo "In Brewfile-base but not installed here (demote?):"
-      sed 's/^/  /' <<< "$missing"
+      printf '%s\n' "$missing" | sed 's/^/  /'
     fi
   else
     cp "$tmp" "$mine"

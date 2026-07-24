@@ -24,7 +24,7 @@ api_command="gh api /enterprises/$enterprise/audit-log \
   --paginate \
   -F phrase='$phrase'"
 
-output=$(eval $api_command 2>&1)
+output=$(eval "$api_command" 2>&1)
 exit_code=$?
 
 if [ $exit_code -eq 0 ]; then
