@@ -6,7 +6,8 @@
 * Do not declare success until user confirms
 * Phrase solutions as hypotheses until confirmed ("This likely fixes...",
   "Please confirm whether this resolves...")
-* Treat questions and observations as discussion; edit files only when told to
+* NEVER start implementing in response to a question or observation - it
+  is discussion; answer it, and edit files only when explicitly told to
 
 ## Memory & Instruction Placement
 
@@ -59,7 +60,19 @@ use a component prefix in the subject line (e.g., `subsystem: Add feature`).
 The canonical first commit subject is `Initial commit`. It should contain
 boilerplate/scaffolding only; add the implementation in follow-up commit(s).
 
+When anything is already staged, never stage more unless explicitly asked,
+in any context: changes folded into the index can't be diffed on their own.
+
+Before any git operation, re-check the repository state (current branch,
+recent commits, index, working tree) instead of relying on earlier
+observations; the user may have changed it in the meantime, so adapt to
+what is actually there.
+
+GitHub PR descriptions (and other rendered-markdown fields) have no column
+limit; do not hard-wrap them - the 72/80-column wrap applies to commit bodies
+and plain-text files only.
+
 ## Node.js
 
 Always default to the package manager matching the lockfile:
-`yarn.lock` → Yarn, `pnpm-lock.yaml` → pnpm, `package-lock.json` → npm
+`yarn.lock`: Yarn, `pnpm-lock.yaml`: pnpm, `package-lock.json`: npm
