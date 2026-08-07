@@ -12,9 +12,8 @@
 
 * Never save memories, preferences, or notes to any persistent store unprompted.
   Passing corrections are discussion - save only when explicitly asked.
-* Globally applicable rules belong in this file, not per-project stores;
-  propose an edit here instead of saving locally.
-* When unsure of scope, ask before saving.
+* When asked to record a rule, follow the remember skill (skills/remember/
+  beside this file); it picks the target file and asks when scope is unclear.
 
 ## Writing Style
 
