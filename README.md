@@ -22,6 +22,7 @@ Personal dotfiles and setup scripts for macOS and Linux.
 source init.sh
 inithomedirs   # create ~/bin, ~/src, ~/tmp, ~/wsrc
 initdotfiles   # clone this repo into ~/src and link ~/.dotfiles
+initagents     # link agent instructions and local rules into ~/.claude
 initomz        # clone oh-my-zsh and link ~/.oh-my-zsh
 initomzfork    # add my fork as a remote and check out its branch
 initzshrc      # link ~/.zshrc to the oh-my-zsh template
