@@ -9,8 +9,9 @@ Personal dotfiles and setup scripts for macOS and Linux.
   (e.g. `.gitconfig`)
 - `link/` - files symlinked into `$HOME` (e.g. `.vimrc`)
 - `source/` - numbered fragments sourced in order at shell startup
-- `manual/` - configs installed by hand (terminal emulators, window
-  managers, key bindings, LaunchDaemons)
+- `manual/` - per-machine configs linked on demand, mostly via
+  `dotlink` (terminal emulators, window managers, key bindings,
+  LaunchDaemons)
 - `agents/` - agent instructions and skills, linked into `~/.claude`
 - `init.sh` - aliases for bootstrapping a new machine
 
@@ -75,6 +76,10 @@ Some of the utilities in `bin/`:
 - `check-git` - show branch and short status for every git repo under
   the current directory
 - `check-node-modules` - show disk usage of nearby `node_modules` dirs
+- `dotlink` - link a config between `manual/` and `$HOME`, direction
+  inferred: adopt a real file into the repo, or deploy one onto a new
+  machine (e.g. `dotlink config/yabai`). Repo paths mirror `$HOME`
+  minus the leading dot on the first path component
 - `node-switch` - download Node.js releases into `~/.node-versions` and
   switch the active version
 - `git-fake-merge` - create a merge commit that records a branch as
