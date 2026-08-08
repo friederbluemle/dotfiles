@@ -1,0 +1,18 @@
+name: ci
+on:
+  push:
+    branches: ['**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: shellcheck --exclude=SC1091 $(grep -rlE '^#!.*bash' bin test)
+      - run: shellcheck --shell=bash --exclude=SC1091 source/*.sh init.sh
+      - run: sudo apt-get update && sudo apt-get install -y zsh
+      - run: for f in $(grep -rlE '^#!.*zsh' bin); do zsh -n "$f"; done
+      - run: for f in source/*.sh init.sh; do bash -n "$f"; done
+      - run: for f in source/*.sh init.sh; do zsh -n "$f"; done

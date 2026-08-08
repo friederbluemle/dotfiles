@@ -1,9 +1,11 @@
+# Aliases intentionally expand variables at definition time.
+# shellcheck disable=SC2139
 export GITHUB_USER=${GITHUB_USER:=friederbluemle}
 export GITHUB_USER_SHORT=${GITHUB_USER_SHORT:=fb}
 export SRC_ROOT=$HOME/src
 
 function gcl2src() {
-    git clone https://github.com/$1.git $SRC_ROOT/$1
+    git clone "${GIT_BASE:-https://github.com}/$1.git" "$SRC_ROOT/$1"
 }
 
 alias inithomedirs="mkdir -p $HOME/{bin,src,tmp,wsrc}"

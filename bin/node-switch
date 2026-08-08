@@ -41,7 +41,11 @@ switch() {
     ls -1d "$directory"/*/
     exit 1
   fi
-  [ -e "$dir/bin/corepack" ] && ln -sf "$dir/bin/corepack" "$HOME/.local/bin/corepack" || rm -f "$HOME/.local/bin/corepack"
+  if [ -e "$dir/bin/corepack" ]; then
+    ln -sf "$dir/bin/corepack" "$HOME/.local/bin/corepack"
+  else
+    rm -f "$HOME/.local/bin/corepack"
+  fi
   ln -sf "$dir/bin/node" "$HOME/.local/bin/node"
   ln -sf "$dir/bin/npm" "$HOME/.local/bin/npm"
   ln -sf "$dir/bin/npx" "$HOME/.local/bin/npx"
