@@ -10,7 +10,8 @@ Personal dotfiles and setup scripts for macOS and Linux.
 - `link/` - files symlinked into `$HOME` (e.g. `.vimrc`)
 - `source/` - numbered fragments sourced in order at shell startup
 - `manual/` - configs installed by hand (terminal emulators, window
-  managers, key bindings, LaunchDaemons, agent instructions)
+  managers, key bindings, LaunchDaemons)
+- `agents/` - agent instructions, linked into `~/.claude`
 - `init.sh` - aliases for bootstrapping a new machine
 
 ## Bootstrap
