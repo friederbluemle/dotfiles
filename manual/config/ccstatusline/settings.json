@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "lines": [
     [
       {
@@ -51,7 +51,7 @@
         "color": "green",
         "rawValue": true,
         "metadata": {
-          "hideNoGit": "true"
+          "hide": "no-git"
         }
       },
       {
@@ -60,7 +60,7 @@
         "color": "yellow",
         "rawValue": true,
         "metadata": {
-          "hideNoGit": "true"
+          "hide": "no-git"
         }
       },
       {
