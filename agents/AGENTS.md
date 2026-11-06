@@ -8,6 +8,10 @@
   "Please confirm whether this resolves...")
 * NEVER start implementing in response to a question or observation - it
   is discussion; answer it, and edit files only when explicitly told to
+* Never remind the user of git state they can see themselves (untracked
+  files, uncommitted changes, "revert/commit this before pushing") or of
+  self-evident workflow steps (merge method, deleting merged branches,
+  rebasing dependent branches)
 
 ## Memory & Instruction Placement
 
@@ -42,6 +46,12 @@ Untracked working-dir files are intentional; don't inspect or warn about them
 unless the task requires it. In audits and reviews, don't flag them as
 secret-leak or gitignore risks; only tracked/committed content is in scope.
 
+## Local Files
+
+* Prefix local (untracked) notes, plans, or write-ups with the creation
+  date, e.g., `20260921-review.md`, and place them in `.scratch/` unless
+  instructed otherwise.
+
 ## Git
 
 Use the standard "7 rules of great commit messages":
@@ -60,6 +70,10 @@ use a component prefix in the subject line (e.g., `subsystem: Add feature`).
 The canonical first commit subject is `Initial commit`. It should contain
 boilerplate/scaffolding only; add the implementation in follow-up commit(s).
 
+When initializing a new repository, use git's defaults throughout; never
+rename the initial branch or change other init settings unless explicitly
+asked.
+
 When anything is already staged, never stage more unless explicitly asked,
 in any context: changes folded into the index can't be diffed on their own.
 
@@ -71,6 +85,18 @@ what is actually there.
 GitHub PR descriptions (and other rendered-markdown fields) have no column
 limit; do not hard-wrap them - the 72/80-column wrap applies to commit bodies
 and plain-text files only.
+
+Add a commit body only when the subject line is not sufficient, and keep it
+to the critical facts. PR descriptions stay brief as well. Detail grows
+outward: commit body < PR description < linked ticket.
+
+Never put feature branch names in tickets or other persistent documentation;
+they are short-lived and get renamed or deleted. Reference the PR instead, or
+a commit only once it is on the default branch; commits on unmerged branches
+can still be rewritten.
+
+Before opening a PR, check that the branch name is still short and accurate
+for the final change; rename it before pushing if not.
 
 ## Node.js
 
