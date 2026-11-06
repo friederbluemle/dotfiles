@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+#
+# dotlink - link files between $HOME and ~/.dotfiles/manual.
+#
+# Usage:
+#   dotlink <path-in-home>   Adopt: move the file into manual/, link back.
+#   dotlink <path-in-repo>   Deploy: link the file into its home location.
+#   dotlink <shorthand>      Deploy relative to manual/, e.g. `dotlink config/yabai`.
+#
+# Repo files are stored without the leading dot of their first path
+# component; deploying adds it back unless the undotted path already
+# exists in $HOME (e.g. ~/Library).
+
+DOTFILES=~/.dotfiles
+
+function e_success() { echo -e " \033[1;32m✔\033[0m  $*"; }
+function e_error()   { echo -e " \033[1;31m✖\033[0m  $*"; }
+function die()       { e_error "$*"; exit 1; }
+
+function usage() {
+  grep '^#' "$0" | tail -n +2 | sed 's/^# \{0,1\}//'
+  exit 1
+}
+
+# Absolute path with the parent resolved physically, leaf left unresolved.
+function canonicalize() {
+  local dir
+  dir="$(cd "$(dirname "$1")" 2> /dev/null && pwd -P)" || return 1
+  echo "$dir/$(basename "$1")"
+}
+
+# Target for a link in directory $1 pointing at $DOTFILES/$2. Relative links
+# resolve from the directory's physical location, so count the depth from
+# there; fall back to an absolute target when that lies outside $HOME.
+function link_target() {
+  local dir up=
+  dir="$(cd "$1" && pwd -P)" || exit 1
+  [[ "$dir" == "$home_real" || "$dir" == "$home_real"/* ]] || { echo "$DOTFILES/$2"; return; }
+  dir=${dir#"$home_real"}
+  dir=${dir#/}
+  while [[ "$dir" == */* ]]; do up+=../ && dir=${dir#*/}; done
+  [[ "$dir" ]] && up+=../
+  echo "$up.dotfiles/$2"
+}
+
+function link_into_home() {
+  local repo_rel=$1 dest=$2 target
+  mkdir -p "$(dirname "$dest")" || exit 1
+  target="$(link_target "$(dirname "$dest")" "$repo_rel")" || exit 1
+  ln -s "$target" "$dest" || exit 1
+  e_success "Linked $dest -> $target"
+}
+
+function deploy() {
+  local repo_rel=$1 sub=${1#manual/}
+  local first=${sub%%/*} rest=
+  [[ "$sub" == */* ]] && rest=/${sub#*/}
+  local dest="$HOME/$first$rest"
+  [[ -e "$HOME/$first" ]] || dest="$HOME/.$first$rest"
+  if [[ -e "$dest" || -L "$dest" ]]; then
+    [[ "$dest" -ef "$DOTFILES/$repo_rel" ]] && { e_success "Already linked: $dest"; exit 0; }
+    [[ -L "$dest" ]] && die "Refusing to replace $dest -> $(readlink "$dest")"
+    die "Refusing to overwrite $dest"
+  fi
+  link_into_home "$repo_rel" "$dest"
+}
+
+function adopt() {
+  local src=$1 rel=${1#"$home_real"/}
+  local first=${rel%%/*} rest=
+  [[ "$rel" == */* ]] && rest=/${rel#*/}
+  local repo_rel="manual/${first#.}$rest"
+  [[ "$rel" == */* || "$first" == .* ]] || die "Not a dotfile (no leading dot), refusing to adopt: $src"
+  if [[ -L "$src" ]]; then
+    [[ "$src" -ef "$DOTFILES/$repo_rel" ]] && { e_success "Already linked: $src"; exit 0; }
+    die "Refusing to adopt symlink $src -> $(readlink "$src")"
+  fi
+  [[ -e "$DOTFILES/$repo_rel" ]] && die "Refusing to overwrite \$DOTFILES/$repo_rel"
+  mkdir -p "$(dirname "$DOTFILES/$repo_rel")" || exit 1
+  mv "$src" "$DOTFILES/$repo_rel" || exit 1
+  e_success "Moved $src -> \$DOTFILES/$repo_rel"
+  link_into_home "$repo_rel" "$src"
+}
+
+[[ $# -eq 1 && $1 != -* ]] || usage
+arg=${1%/}
+
+dotfiles_real="$(cd "$DOTFILES" && pwd -P)" || exit 1
+home_real="$(cd ~ && pwd -P)" || exit 1
+
+path="$(canonicalize "$arg")"
+if [[ "$path" && ( -e "$path" || -L "$path" ) ]]; then
+  case "$path" in
+    "$dotfiles_real"/manual/?*) deploy "manual/${path#"$dotfiles_real"/manual/}" ;;
+    "$dotfiles_real"/*) die "Only files under manual/ can be deployed: $path" ;;
+    "$home_real"/?*) adopt "$path" ;;
+    *) die "Path is outside \$HOME: $path" ;;
+  esac
+elif [[ -e "$DOTFILES/manual/$arg" ]]; then
+  deploy "manual/$arg"
+elif [[ "$arg" == manual/* && -e "$DOTFILES/$arg" ]]; then
+  deploy "$arg"
+else
+  die "Not found: $arg (also tried \$DOTFILES/manual/$arg)"
+fi
