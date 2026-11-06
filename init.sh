@@ -13,6 +13,7 @@ alias initvimplug="mkdir -p $HOME/.vim/autoload && gcl2src junegunn/vim-plug && 
 alias initgitdiff="gcl2src so-fancy/diff-so-fancy && ln -s $SRC_ROOT/so-fancy/diff-so-fancy/diff-so-fancy $HOME/bin/diff-so-fancy"
 alias initdotfiles="gcl2src $GITHUB_USER/dotfiles && ln -s $SRC_ROOT/$GITHUB_USER/dotfiles $HOME/.dotfiles"
 alias initmisc="gcl2src $GITHUB_USER/misc && ln -s $SRC_ROOT/$GITHUB_USER/misc $HOME/.misc"
+alias initagents="mkdir -p $HOME/.claude/rules $HOME/.claude/skills && touch $HOME/.dotfiles/agents/AGENTS.local.md && ln -s ../.dotfiles/agents/AGENTS.md $HOME/.claude/CLAUDE.md && ln -s ../../.dotfiles/agents/AGENTS.local.md $HOME/.claude/rules/local.md && pushd $HOME/.claude/skills && ln -s ../../.dotfiles/agents/skills/* . && popd"
 alias initomz="gcl2src ohmyzsh/ohmyzsh && ln -s $SRC_ROOT/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh"
 alias initomzfork="pushd $SRC_ROOT/ohmyzsh/ohmyzsh && git remote add $GITHUB_USER_SHORT https://github.com/$GITHUB_USER/ohmyzsh.git && git fetch --all && git checkout $GITHUB_USER_SHORT-custom && popd"
 alias initzshrc="ln -s ./.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc"
