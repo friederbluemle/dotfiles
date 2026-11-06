@@ -17,3 +17,8 @@ jobs:
       # compaudit during the interactive zsh startup check
       - run: sudo chmod -R go-w /usr/share/zsh
       - run: test/bootstrap.sh
+  dotlink:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: test/dotlink.sh
