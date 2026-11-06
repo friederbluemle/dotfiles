@@ -1,11 +1,18 @@
 {
-  "version": 3,
+  "version": 4,
   "lines": [
     [
       {
         "id": "model",
         "type": "model",
         "color": "cyan",
+        "rawValue": true,
+        "merge": false
+      },
+      {
+        "id": "thinking-effort",
+        "type": "thinking-effort",
+        "color": "magenta",
         "rawValue": true,
         "merge": true
       },
@@ -51,8 +58,9 @@
         "color": "green",
         "rawValue": true,
         "metadata": {
-          "hideNoGit": "true"
-        }
+          "hide": "no-git"
+        },
+        "maxWidth": 25
       },
       {
         "id": "git-changes",
@@ -60,13 +68,29 @@
         "color": "yellow",
         "rawValue": true,
         "metadata": {
-          "hideNoGit": "true"
+          "hide": "no-git"
         }
       },
       {
-        "id": "flex",
+        "id": "git-ahead-behind",
+        "type": "git-ahead-behind",
+        "color": "magenta",
+        "metadata": {
+          "hide": "no-git,no-upstream,zero"
+        }
+      },
+      {
+        "id": "flex-1",
         "type": "flex-separator"
       },
+      {
+        "id": "session-id",
+        "type": "custom-command",
+        "color": "brightBlack",
+        "commandPath": "jq -r '.session_id[0:8]'"
+      }
+    ],
+    [
       {
         "id": "ctx-pct",
         "type": "context-percentage-usable",
@@ -74,69 +98,18 @@
         "rawValue": true
       },
       {
-        "id": "ctx-open",
-        "type": "custom-text",
-        "color": "brightBlack",
-        "customText": "(",
-        "merge": true
-      },
-      {
-        "id": "ctx-len",
-        "type": "context-length",
-        "color": "brightBlack",
+        "id": "compaction-counter",
+        "type": "compaction-counter",
+        "color": "yellow",
         "rawValue": true,
-        "merge": true
+        "metadata": {
+          "hide": "zero"
+        }
       },
       {
-        "id": "ctx-close",
-        "type": "custom-text",
-        "color": "brightBlack",
-        "customText": ")"
-      },
-      {
-        "id": "sep-ctx-tokens",
+        "id": "sep-ctx-cost",
         "type": "custom-text",
         "customText": "|"
-      },
-      {
-        "id": "tokens-total",
-        "type": "tokens-total",
-        "color": "green",
-        "rawValue": true
-      },
-      {
-        "id": "tokens-open",
-        "type": "custom-text",
-        "color": "brightBlack",
-        "customText": "(",
-        "merge": true
-      },
-      {
-        "id": "tokens-in",
-        "type": "tokens-input",
-        "color": "brightBlack",
-        "rawValue": true,
-        "merge": true
-      },
-      {
-        "id": "tokens-slash",
-        "type": "custom-text",
-        "color": "brightBlack",
-        "customText": "/",
-        "merge": true
-      },
-      {
-        "id": "tokens-out",
-        "type": "tokens-output",
-        "color": "brightBlack",
-        "rawValue": true,
-        "merge": true
-      },
-      {
-        "id": "tokens-close",
-        "type": "custom-text",
-        "color": "brightBlack",
-        "customText": ")"
       },
       {
         "id": "session-cost",
@@ -145,7 +118,7 @@
         "rawValue": true
       },
       {
-        "id": "sep-tokens-time",
+        "id": "sep-cost-time",
         "type": "custom-text",
         "customText": "|"
       },
@@ -153,24 +126,98 @@
         "id": "session-clock",
         "type": "session-clock",
         "color": "blue",
+        "rawValue": true
+      },
+      {
+        "id": "sep-time-cache",
+        "type": "custom-text",
+        "customText": "|"
+      },
+      {
+        "id": "cache-timer",
+        "type": "cache-timer",
+        "color": "brightCyan",
+        "rawValue": true,
+        "metadata": {
+          "ttlSeconds": "3600"
+        }
+      },
+      {
+        "id": "cache-hit-open",
+        "type": "custom-text",
+        "color": "brightBlack",
+        "customText": "(",
+        "merge": true
+      },
+      {
+        "id": "cache-hit-rate",
+        "type": "cache-hit-rate",
+        "color": "brightBlack",
         "rawValue": true,
         "merge": true
       },
       {
-        "id": "time-slash",
+        "id": "cache-hit-close",
         "type": "custom-text",
         "color": "brightBlack",
-        "customText": "/",
-        "merge": true
+        "customText": ")"
       },
       {
-        "id": "block-timer",
-        "type": "block-timer",
-        "color": "yellow",
+        "id": "flex-2",
+        "type": "flex-separator"
+      },
+      {
+        "id": "usage-5h-label",
+        "type": "custom-text",
+        "color": "brightBlack",
+        "customText": "5h"
+      },
+      {
+        "id": "session-usage",
+        "type": "session-usage",
+        "color": "brightBlue",
+        "rawValue": true,
+        "metadata": {
+          "display": "slider",
+          "cursor": "true"
+        }
+      },
+      {
+        "id": "reset-timer",
+        "type": "reset-timer",
+        "color": "brightBlack",
+        "rawValue": true,
+        "metadata": {
+          "compact": "true"
+        }
+      },
+      {
+        "id": "sep-5h-7d",
+        "type": "custom-text",
+        "customText": "|"
+      },
+      {
+        "id": "usage-7d-label",
+        "type": "custom-text",
+        "color": "brightBlack",
+        "customText": "7d"
+      },
+      {
+        "id": "weekly-usage",
+        "type": "weekly-usage",
+        "color": "brightBlue",
         "rawValue": true
+      },
+      {
+        "id": "weekly-reset-timer",
+        "type": "weekly-reset-timer",
+        "color": "brightBlack",
+        "rawValue": true,
+        "metadata": {
+          "compact": "true"
+        }
       }
     ],
-    [],
     []
   ],
   "flexMode": "full-minus-40",
